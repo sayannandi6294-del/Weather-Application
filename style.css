@@ -1,0 +1,812 @@
+
+/* ==============================
+   1. BASIC SETTINGS
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-family: Inter, Arial, sans-serif;
+    color: #f5f9ff;
+}
+
+body {
+    min-height: 100vh;
+    padding: 34px;
+    background: linear-gradient(
+        130deg,
+        #2466ad 0%,
+        #3f83c7 48%,
+        #1c579b 100%
+    );
+    overflow-x: hidden;
+}
+
+/* ==============================
+   2. BACKGROUND CLOUDS
+================================ */
+
+.sky-cloud {
+    position: fixed;
+    width: 115px;
+    height: 48px;
+    background: linear-gradient(180deg, #fff, #a9c9eb);
+    border-radius: 50px;
+    filter: drop-shadow(0 8px 12px #174b8333);
+    opacity: .9;
+    z-index: -1;
+}
+
+.sky-cloud:before,
+.sky-cloud:after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.sky-cloud:before {
+    width: 58px;
+    height: 58px;
+    left: 18px;
+}
+
+.sky-cloud:after {
+    width: 72px;
+    height: 72px;
+    right: 13px;
+    bottom: 2px;
+}
+
+.cloud-one {
+    top: 75px;
+    left: 5%;
+}
+
+.cloud-two {
+    top: 62px;
+    left: 42%;
+    transform: scale(.72);
+}
+
+.cloud-three {
+    top: 48px;
+    right: 3%;
+    transform: scale(.9);
+}
+
+/* ==============================
+   3. MAIN DASHBOARD
+================================ */
+
+.dashboard {
+    max-width: 1500px;
+    min-height: calc(100vh - 68px);
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 70px 1fr;
+
+    background: rgba(17, 65, 119, .42);
+    border: 1px solid #ffffff24;
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow: 0 24px 70px #123f733d;
+    backdrop-filter: blur(18px);
+}
+
+/* ==============================
+   4. SIDEBAR
+================================ */
+
+.sidebar {
+    background: rgba(10, 52, 101, .38);
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 18px;
+    padding: 27px 12px;
+}
+
+.brand {
+    font-size: 27px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.side-btn {
+    border: none;
+    color: #d9eaff;
+    background: transparent;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.side-btn:hover,
+.side-btn.active {
+    background: #174e87;
+    color: white;
+}
+
+.side-bottom {
+    margin-top: auto;
+    font-size: 22px;
+    color: #d9eaff;
+}
+
+/* ==============================
+   5. MAIN AREA
+================================ */
+
+.main-area {
+    padding: 28px 30px 18px;
+    min-width: 0;
+}
+
+/* ==============================
+   6. SEARCH BAR
+================================ */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+    gap: 18px;
+}
+
+.search {
+    height: 42px;
+    width: min(430px, 70%);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 13px;
+
+    background: rgba(10, 58, 110, .45);
+    border-radius: 10px;
+    color: #d8eaff;
+}
+
+.search span {
+    font-size: 25px;
+}
+
+.search input {
+    flex: 1;
+    min-width: 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+    color: white;
+    font: inherit;
+    font-size: 13px;
+}
+
+.search input::placeholder {
+    color: #b8d0eb;
+}
+
+.search button {
+    border: 0;
+    border-radius: 7px;
+
+    padding: 7px 12px;
+
+    background: #dceeff;
+    color: #245789;
+
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.search button:hover {
+    background: #ffffff;
+}
+
+.search button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.bell {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid #ffffff30;
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    background: #e8f3ff;
+    color: #245789;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.status {
+    min-height: 18px;
+    margin: -13px 0 10px;
+
+    color: #ffe7a8;
+    font-size: 12px;
+}
+
+/* ==============================
+   7. TOP WEATHER CARDS
+================================ */
+
+.top-grid {
+    display: grid;
+    grid-template-columns: 1.02fr 1.9fr 1fr;
+    gap: 17px;
+}
+
+.glass-card {
+    background: rgba(215, 235, 255, .13);
+
+    border: 1px solid #ffffff16;
+    border-radius: 20px;
+
+    box-shadow: 0 8px 22px #164d8420;
+
+    min-width: 0;
+}
+
+.current-card,
+.popular-card {
+    min-height: 280px;
+    padding: 22px 20px;
+}
+
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.card-heading h2 {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.card-heading p,
+.card-heading > span {
+    font-size: 11px;
+    color: #d2e5fa;
+    margin-top: 6px;
+}
+
+.live-dot {
+    font-size: 9px !important;
+    color: #a7f4d0 !important;
+}
+
+/* ==============================
+   8. TEMPERATURE
+================================ */
+
+.current-main {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 14px 0 0;
+}
+
+.current-main img {
+    width: 105px;
+    height: 105px;
+    object-fit: contain;
+}
+
+.temperature {
+    display: flex;
+    align-items: flex-start;
+}
+
+.temperature strong {
+    font-size: 60px;
+    letter-spacing: -4px;
+    line-height: 1;
+}
+
+.temperature sup {
+    font-size: 18px;
+    margin: 4px 0 0 5px;
+}
+
+.condition {
+    text-transform: capitalize;
+    font-size: 14px;
+    color: #e1efff;
+    margin: -2px 0 23px 110px;
+}
+
+/* ==============================
+   9. WEATHER DETAILS
+================================ */
+
+.weather-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 5px;
+    text-align: center;
+
+    border-top: 1px solid #ffffff22;
+    padding-top: 15px;
+}
+
+.weather-stats div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.weather-stats span {
+    font-size: 19px;
+    color: #d8edff;
+}
+
+.weather-stats strong {
+    font-size: 12px;
+}
+
+.weather-stats small {
+    font-size: 9px;
+    color: #c5ddf5;
+}
+
+/* ==============================
+   10. WEATHER MAP
+================================ */
+
+.map-card {
+    height: 280px;
+    position: relative;
+
+    overflow: hidden;
+    background: #d4e8d0;
+}
+
+.map-card iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: saturate(.8);
+}
+
+.map-label {
+    position: absolute;
+    left: 15px;
+    bottom: 14px;
+
+    background: #174d7dcf;
+    padding: 8px 12px;
+    border-radius: 9px;
+
+    font-size: 12px;
+}
+
+.map-pin {
+    color: #ff7777;
+    margin-right: 7px;
+}
+
+.map-open {
+    position: absolute;
+    right: 13px;
+    top: 13px;
+
+    background: #174d7dcf;
+    color: white;
+
+    text-decoration: none;
+    padding: 8px 11px;
+    border-radius: 9px;
+}
+
+/* ==============================
+   11. POPULAR CITIES
+================================ */
+
+.popular-card .card-heading {
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.popular-card .card-heading > span {
+    margin: 0;
+}
+
+.city-list {
+    display: grid;
+    gap: 5px;
+}
+
+.city-row {
+    display: grid;
+    grid-template-columns: 25px 1fr auto;
+    gap: 9px;
+
+    align-items: center;
+    text-align: left;
+
+    border: 0;
+    background: transparent;
+    color: #f5f9ff;
+
+    padding: 9px 5px;
+    border-radius: 9px;
+
+    cursor: pointer;
+}
+
+.city-row:hover {
+    background: #ffffff18;
+}
+
+.city-row span {
+    font-size: 19px;
+}
+
+.city-row b {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.city-row small {
+    font-size: 10px;
+    color: #d2e5fa;
+    text-align: right;
+}
+
+/* ==============================
+   12. BOTTOM FORECAST CARDS
+================================ */
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1.02fr 2.9fr;
+    gap: 17px;
+    margin-top: 17px;
+}
+
+.forecast-card,
+.summary-card {
+    min-height: 310px;
+    padding: 22px 20px;
+}
+
+.pill {
+    font-size: 10px !important;
+    color: #e5f2ff !important;
+
+    border: 1px solid #ffffff30;
+    border-radius: 7px;
+
+    padding: 5px 8px;
+    margin: 0 !important;
+}
+
+/* ==============================
+   13. DAILY FORECAST
+================================ */
+
+.forecast-list {
+    display: grid;
+    gap: 4px;
+    margin-top: 15px;
+}
+
+.forecast-row {
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+
+    align-items: center;
+    gap: 9px;
+
+    padding: 7px 5px;
+    border-radius: 9px;
+}
+
+.forecast-row:nth-child(even) {
+    background: #ffffff0c;
+}
+
+.forecast-row img {
+    width: 34px;
+    height: 34px;
+}
+
+.forecast-row strong {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.forecast-row small {
+    font-size: 10px;
+    color: #d1e5fa;
+}
+
+/* ==============================
+   14. HOURLY SUMMARY
+================================ */
+
+.summary-card .card-heading {
+    align-items: center;
+}
+
+.chart-area {
+    margin-top: 25px;
+    padding: 15px 8px 5px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff09,
+        #ffffff03
+    );
+
+    min-height: 210px;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-between;
+
+    color: #d2e5fa;
+    font-size: 10px;
+
+    margin: 0 8px 18px;
+}
+
+.hourly-chart {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(55px, 1fr));
+
+    gap: 9px;
+    align-items: end;
+
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.hour-item {
+    text-align: center;
+    min-width: 55px;
+}
+
+.hour-temp {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.hour-item img {
+    width: 39px;
+    height: 39px;
+    display: block;
+    margin: auto;
+}
+
+.hour-time {
+    font-size: 10px;
+    color: #d3e6fa;
+    margin-top: 5px;
+}
+
+footer {
+    text-align: center;
+    color: #c8def5;
+    font-size: 10px;
+    margin-top: 17px;
+}
+
+.muted {
+    font-size: 12px;
+    color: #d4e5f6;
+    padding: 12px;
+}
+
+/* ==============================
+   15. TABLET RESPONSIVENESS
+================================ */
+
+@media (max-width: 1100px) {
+
+    body {
+        padding: 18px;
+    }
+
+    .top-grid {
+        grid-template-columns: 1fr 1.5fr;
+    }
+
+    .popular-card {
+        grid-column: 1 / -1;
+        min-height: auto;
+    }
+
+    .city-list {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .city-row {
+        grid-template-columns: 22px 1fr;
+    }
+
+    .city-row small {
+        grid-column: 2;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+/* ==============================
+   16. MOBILE RESPONSIVENESS
+================================ */
+
+@media (max-width: 760px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .dashboard {
+        grid-template-columns: 52px 1fr;
+        min-height: calc(100vh - 20px);
+        border-radius: 15px;
+    }
+
+    .sidebar {
+        padding: 20px 6px;
+        gap: 13px;
+    }
+
+    .side-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .main-area {
+        padding: 19px 13px;
+    }
+
+    .topbar {
+        margin-bottom: 18px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .search button {
+        font-size: 11px;
+        padding: 7px;
+    }
+
+    .top-actions {
+        gap: 7px;
+    }
+
+    .bell {
+        display: none;
+    }
+
+    .top-grid,
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-card {
+        height: 230px;
+        grid-row: 1;
+    }
+
+    .current-card {
+        min-height: 260px;
+    }
+
+    .popular-card {
+        grid-column: auto;
+    }
+
+    .city-list {
+        grid-template-columns: 1fr;
+    }
+
+    .city-row {
+        grid-template-columns: 25px 1fr auto;
+    }
+
+    .city-row small {
+        grid-column: auto;
+    }
+
+    .forecast-card,
+    .summary-card {
+        min-height: auto;
+    }
+
+    .hourly-chart {
+        grid-template-columns: repeat(6, 65px);
+    }
+
+    .temperature strong {
+        font-size: 55px;
+    }
+}
+
+/* ==============================
+   17. SMALL MOBILE SCREEN
+================================ */
+
+@media (max-width: 390px) {
+
+    .main-area {
+        padding: 15px 9px;
+    }
+
+    .current-card,
+    .popular-card,
+    .forecast-card,
+    .summary-card {
+        padding: 17px 13px;
+    }
+
+    .current-main img {
+        width: 85px;
+        height: 85px;
+    }
+
+    .temperature strong {
+        font-size: 48px;
+    }
+
+    .condition {
+        margin-left: 90px;
+    }
+}

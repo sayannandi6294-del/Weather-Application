@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="sky-cloud cloud-one"></div>
+  <div class="sky-cloud cloud-two"></div>
+  <div class="sky-cloud cloud-three"></div>
+
+  <main class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">☀</div>
+
+      <button class="side-btn active">▦</button>
+      <button class="side-btn" onclick="document.getElementById('mapCard').scrollIntoView({behavior:'smooth'})">◫</button>
+      <button class="side-btn" onclick="document.getElementById('forecastCard').scrollIntoView({behavior:'smooth'})">◎</button>
+      <button class="side-btn" onclick="showMessage('Settings coming soon.')">⚙</button>
+
+      <div class="side-bottom">↪</div>
+    </aside>
+
+    <!-- Main Dashboard -->
+    <section class="main-area">
+
+      <!-- Search bar -->
+      <header class="topbar">
+        <div class="search">
+          <span>⌕</span>
+
+          <input
+            type="text"
+            id="cityInput"
+            placeholder="Search for location"
+            value="Kolkata"
+          >
+
+          <button id="searchBtn">Search</button>
+        </div>
+
+        <div class="top-actions">
+          <span class="bell">♧</span>
+          <div class="avatar">SN</div>
+        </div>
+      </header>
+
+      <div id="status" class="status"></div>
+
+      <!-- Top Cards -->
+      <section class="top-grid">
+
+        <!-- Current Weather -->
+        <article class="glass-card current-card">
+
+          <div class="card-heading">
+            <div>
+              <h2>Current Weather</h2>
+              <p id="localTime">--</p>
+            </div>
+            <span class="live-dot">● LIVE</span>
+          </div>
+
+          <div class="current-main">
+            <img
+              id="currentIcon"
+              src="https://openweathermap.org/img/wn/10d@4x.png"
+              alt="Weather icon"
+            >
+
+            <div class="temperature">
+              <strong id="temperature">--</strong>
+              <sup>°C</sup>
+            </div>
+          </div>
+
+          <p class="condition" id="description">
+            Loading weather...
+          </p>
+
+          <div class="weather-stats">
+
+            <div>
+              <span>≋</span>
+              <strong id="pressure">--</strong>
+              <small>Pressure</small>
+            </div>
+
+            <div>
+              <span>♢</span>
+              <strong id="humidity">--</strong>
+              <small>Humidity</small>
+            </div>
+
+            <div>
+              <span>≋</span>
+              <strong id="wind">--</strong>
+              <small>Wind</small>
+            </div>
+
+            <div>
+              <span>☀</span>
+              <strong id="uv">--</strong>
+              <small>Feels like</small>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Weather Map -->
+        <article class="map-card glass-card" id="mapCard">
+
+          <iframe
+            id="mapFrame"
+            title="Weather location map"
+            loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=88.25%2C22.45%2C88.45%2C22.65&layer=mapnik&marker=22.5726%2C88.3639">
+          </iframe>
+
+          <div class="map-label">
+            <span class="map-pin">●</span>
+            <span id="mapCity">Kolkata</span>
+          </div>
+
+          <a
+            class="map-open"
+            id="mapLink"
+            href="https://www.openstreetmap.org/"
+            target="_blank"
+            rel="noreferrer"
+          >↗</a>
+
+        </article>
+
+        <!-- Popular Cities -->
+        <article class="glass-card popular-card">
+
+          <div class="card-heading">
+            <h2>Popular Cities</h2>
+            <span>Quick view</span>
+          </div>
+
+          <div class="city-list">
+
+            <button class="city-row" data-city="Delhi">
+              <span>☁</span>
+              <b>Delhi</b>
+              <small id="Delhi-weather">View weather</small>
+            </button>
+
+            <button class="city-row" data-city="Mumbai">
+              <span>☂</span>
+              <b>Mumbai</b>
+              <small id="Mumbai-weather">View weather</small>
+            </button>
+
+            <button class="city-row" data-city="Hyderabad">
+              <span>☁</span>
+              <b>Hyderabad</b>
+              <small id="Hyderabad-weather">View weather</small>
+            </button>
+
+            <button class="city-row" data-city="Bengaluru">
+              <span>☀</span>
+              <b>Bengaluru</b>
+              <small id="Bengaluru-weather">View weather</small>
+            </button>
+
+            <button class="city-row" data-city="Kolkata">
+              <span>☀</span>
+              <b>Kolkata</b>
+              <small id="Kolkata-weather">View weather</small>
+            </button>
+
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Bottom Cards -->
+      <section class="bottom-grid">
+
+        <!-- Five Day Forecast -->
+        <article class="glass-card forecast-card" id="forecastCard">
+
+          <div class="card-heading">
+            <h2>5-Day Forecast</h2>
+            <span class="pill">Daily</span>
+          </div>
+
+          <div id="forecastList" class="forecast-list">
+            <p class="muted">Forecast will appear here.</p>
+          </div>
+
+        </article>
+
+        <!-- Weather Summary -->
+        <article class="glass-card summary-card">
+
+          <div class="card-heading">
+            <div>
+              <h2>Weather Summary</h2>
+              <p id="summaryCity">Next hours</p>
+            </div>
+
+            <span class="pill">3-hour outlook</span>
+          </div>
+
+          <div class="chart-area">
+
+            <div class="chart-labels">
+              <span>Temperature</span>
+              <span>Next forecast periods</span>
+            </div>
+
+            <div id="hourlyChart" class="hourly-chart">
+              <p class="muted">Forecast will appear here.</p>
+            </div>
+
+          </div>
+        </article>
+
+      </section>
+
+      <footer>
+        Weather Dashboard · Built with HTML, CSS, JavaScript & OpenWeather API
+      </footer>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
