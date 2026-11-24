@@ -29,8 +29,6 @@ It uses the OpenWeather API to display real-time weather information for differe
 - OpenStreetMap
 
 ## 📸 Screenshots
-
-### 2. Current Weather Information
 ![Current Weather]<img width="1897" height="928" alt="Screenshot 2026-11-24 194827" src="https://github.com/user-attachments/assets/841cb127-f491-4b00-a977-7ab672bc3e72" />
 <!-- Uploading "Screenshot 2026-11-24 194901.png"... -->
 <img width="1896" height="931" alt="Screenshot 2026-11-24 194929" src="https://github.com/user-attachments/assets/ba82694a-7229-4fef-abc4-cb5f402e4103" />
